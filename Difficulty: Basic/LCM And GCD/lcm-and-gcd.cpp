@@ -2,29 +2,25 @@ class Solution {
   public:
     vector<int> lcmAndGcd(int a, int b) {
         // code here
-        
-        long long gcd,lcm;
-        int bk1 = a, bk2 = b;
+        int gcd;
+        int n1 = a;
+        int n2 = b;
+        int lcm;
         
         while(a!=0 && b!=0){
-            
-            int maxoftwo = max(a,b);
-            int minoftwo = min(a,b);
-            
-            a = maxoftwo;
-            b = minoftwo;
+            int nn1 = max(a,b);
+            int nn2 = min(a,b);
+            a = nn1;
+            b = nn2;
             
             a = a%b;
             
         }
-        if(a==0)
-            gcd = b;
-        else
-            gcd = a;
-            
-        lcm = (bk1*bk2)/gcd;
+        
+        gcd = b;
+        
+        lcm = (n1*n2)/gcd;
         
         return {lcm,gcd};
-        
     }
 };
