@@ -1,22 +1,20 @@
 class Solution {
   public:
-    int missingNum(vector<int>& arr) {
+    int missingNum(vector<int>& nums) {
         // code here
-
-        int N = arr.size();
+        int N = nums.size();
         int ans = N+1;
         
         for(int i=0;i<N;i++){
-            while(arr[i]!=i+1){
-                if(arr[i]==N+1){
+            while(nums[i]!=i+1){
+                if(nums[i]==N+1)
                     break;
-                }
-                swap(arr[i],arr[arr[i]-1]);
+                swap(nums[i],nums[nums[i]-1]);
             }
         }
         
         for(int i=0;i<N;i++){
-            if(arr[i]!=i+1){
+            if(nums[i]!=i+1){
                 ans = i+1;
                 break;
             }
