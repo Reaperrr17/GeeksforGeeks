@@ -2,15 +2,21 @@ class Solution {
   public:
     vector<int> lcmAndGcd(int a, int b) {
         // code here
-        int n = min(a,b);
-        int gcd;
-        for(int i=n;i>=1;i--){
-            if(a%i==0 && b%i==0){
-                gcd = i;
-                break;
-            }
+       int n1 = a;
+        int n2 = b;
+        while(a!=0){
+            
+            int nn1 = max(a,b);
+            int nn2 = min(a,b);
+
+            a = nn1;
+            b = nn2;
+            
+            a = a%b;
+            
         }
-        int lcm = (a*b)/gcd;
+        int gcd = b;
+        int lcm = (n1*n2)/gcd;
         return {lcm,gcd};
     }
 };
