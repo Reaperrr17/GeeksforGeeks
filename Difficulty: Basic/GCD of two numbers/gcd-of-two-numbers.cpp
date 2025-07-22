@@ -2,8 +2,10 @@ class Solution {
   public:
     int gcd(int a, int b) {
         // code here
-        if(b==0)
+        if(b==0){
             return a;
-        gcd(b,a%b);
+        }
+        return gcd(b,a%b);
+        
     }
 };
