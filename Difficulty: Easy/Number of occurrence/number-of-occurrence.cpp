@@ -1,52 +1,52 @@
 class Solution {
   public:
-    int countFreq(vector<int>& nums, int target) {
+    int countFreq(vector<int>& arr, int target) {
         // code here
         int st = 0;
-        int end = nums.size()-1;
-        int prevpos = -1;
-        int endpos = -1;
-
+        int end = arr.size()-1;
+        int firstindex = -1;
+        int endindex = -1;
+        
         while(st<=end){
-
-            int mid = end - (end-st)/2;
-
-            if(nums[mid]==target){
-                prevpos = mid;
+            
+            int mid = st + (end-st)/2;
+            
+            if(arr[mid]==target){
+                firstindex = mid;
                 end = mid-1;
             }
-            else if(nums[mid]>target){
+            else if(arr[mid]>target){
                 end = mid-1;
             }
-            else{
+            else if(arr[mid]<target){
                 st = mid+1;
             }
         }
-
+        
         st = 0;
-        end = nums.size()-1;
-
+        end = arr.size()-1;
+        
         while(st<=end){
-
-            int mid = end - (end-st)/2;
-
-            if(nums[mid]==target){
-                endpos = mid;
+            
+            int mid = st + (end-st)/2;
+            
+            if(arr[mid]==target){
+                endindex = mid;
                 st = mid+1;
             }
-            else if(nums[mid]>target){
+            else if(arr[mid]>target){
                 end = mid-1;
             }
-            else{
+            else if(arr[mid]<target){
                 st = mid+1;
             }
         }
-        if(endpos!=-1){
-            int ans = endpos-prevpos+1;
-            return ans;
+        
+        if(firstindex==-1){
+            return 0;
         }
         else{
-            return 0;
+            return endindex-firstindex+1;
         }
     }
 };
