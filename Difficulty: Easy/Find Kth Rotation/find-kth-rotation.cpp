@@ -2,16 +2,33 @@ class Solution {
   public:
     int findKRotation(vector<int> &arr) {
         // Code Here
+        int st = 0;
+        int end = arr.size()-1;
         int N = arr.size();
-        int minindex;
         
-        for(int i=0;i<N;i++){
-            if(arr[i]<arr[(i-1+N)%N] && arr[i]<=arr[(i+1)%N]){
-                minindex = i;
-                break;
-            }
+        if(arr[st]<=arr[end]){
+            return st;
         }
-        
-        return minindex;
+        else{
+            
+            while(st<=end){
+                int mid = end - (end-st)/2;
+                
+                if(arr[mid]<=arr[(mid-1+N)%N] && arr[mid]<=arr[(mid+1)%N]){
+                    return mid;
+                }
+                else if(arr[st]>=arr[end] && arr[mid]<=arr[st]){
+                    end = mid-1;
+                }
+                else if(arr[st]<=arr[end] && arr[mid]>=arr[st]){
+                    end = mid-1;
+                }
+                else{
+                    st = mid+1;
+                }
+            }
+            
+            return 0;
+        }
     }
 };
