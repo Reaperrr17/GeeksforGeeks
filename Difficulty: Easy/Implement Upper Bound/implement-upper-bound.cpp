@@ -1,0 +1,25 @@
+class Solution {
+  public:
+    int upperBound(vector<int>& nums, int target) {
+        // code here
+        int N = nums.size();
+        int ans = N;
+        int st = 0;
+        int end = N-1;
+        
+        while(st<=end){
+            
+            int mid = st + (end-st)/2;
+            
+            if(nums[mid]<=target){
+                st = mid+1;
+            }
+            else{
+                ans = mid;
+                end = mid-1;
+            }
+        }
+        
+        return ans;
+    }
+};
