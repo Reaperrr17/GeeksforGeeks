@@ -1,21 +1,17 @@
 class Solution {
   public:
-    int lowerBound(vector<int>& nums, int target) {
+    int lowerBound(vector<int>& arr, int target) {
         // code here
-        int N = nums.size();
-        int end = N-1;
+        int N = arr.size();
         int st=0;
+        int end=N-1;
         int ans = N;
         
         while(st<=end){
             
-            int mid = st + (end-st)/2;
+            int mid = st+(end-st)/2;
             
-            if(nums[mid]==target){
-                ans = mid;
-                end = mid-1;
-            }
-            else if(nums[mid]>target){
+            if(arr[mid]>=target){
                 ans = mid;
                 end = mid-1;
             }
