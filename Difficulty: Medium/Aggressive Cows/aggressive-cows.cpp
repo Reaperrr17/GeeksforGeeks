@@ -21,15 +21,8 @@ class Solution {
         
         
         sort(stalls.begin(),stalls.end());
-        int secondlargest;
-        for(int i=stalls.size()-1;i>=0;i--){
-            if(stalls[i-1]<stalls[i]){
-                secondlargest = stalls[i-1];
-                break;
-            }
-        }
         int st = 1;
-        int end = stalls[stalls.size()-1];
+        int end = stalls[stalls.size()-1]-stalls[0];
         int ans;
         
         while(st<=end){
