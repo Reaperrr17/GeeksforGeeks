@@ -1,51 +1,40 @@
 class Solution {
   public:
-    
-    bool ispossible(int n,vector <int> &arr,int k){
-        long long summ=0;
-        int count=1;
-        for(int i=0;i<arr.size();i++){
-            if(arr[i]>n){
+    bool ispossible(int maxpages,vector <int> &books,int k){
+        long long sum = 0;
+        int stu = 1;
+        for(int i=0;i<books.size();i++){
+            if(books[i]>maxpages){
                 return false;
             }
-            summ += arr[i];
-            if(summ>n){
-                count++;
-                summ=0;
-                summ+=arr[i];
+            sum += books[i];
+            if(sum>maxpages){
+                stu++;
+                sum = 0;
+                sum = books[i];
+            }
+            if(stu>k){
+                return false;
             }
         }
-        if(count>k){
-            return false;
-        }
-        else{
-            return true;
-        }
+        return true;
     }
-    
-    int findPages(vector<int> &arr, int k) {
+    int findPages(vector<int> &books, int k) {
         // code here
-        if(k>arr.size()){
+        if(k>books.size()){
             return -1;
-        }
-        else{
-            long long summ = 0;
-            for(int i=0;i<arr.size();i++){
-                summ += arr[i];
-            }
-            int st=0;
-            int end=summ;
+        }else{
+            int st = *(max_element(books.begin(),books.end()));
+            long long end = accumulate(books.begin(),books.end(),0);
             int ans;
             
             while(st<=end){
+                long long mid = st + (end-st)/2;
                 
-                int mid = st + (end-st)/2;
-                
-                if(ispossible(mid,arr,k)){
+                if(ispossible(mid,books,k)){
                     ans = mid;
                     end = mid-1;
-                }
-                else{
+                }else{
                     st = mid+1;
                 }
             }
