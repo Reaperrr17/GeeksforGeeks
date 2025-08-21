@@ -1,23 +1,24 @@
 class Solution {
   public:
-    int lowerBound(vector<int>& arr, int target) {
+    int lowerBound(vector<int>& nums, int target) {
         // code here
+        int N = nums.size();
         int st = 0;
-        int end = arr.size()-1;
-        int ans = arr.size();
+        int end = N-1;
+        int ans = N;
         
         while(st<=end){
             
             int mid = st + (end-st)/2;
             
-            if(arr[mid]>=target){
+            if(nums[mid]>=target){
                 ans = mid;
                 end = mid-1;
-            }
-            else{
+            }else{
                 st = mid+1;
             }
         }
+        
         return ans;
     }
 };
