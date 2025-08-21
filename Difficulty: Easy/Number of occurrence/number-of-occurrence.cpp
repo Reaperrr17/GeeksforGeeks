@@ -1,52 +1,44 @@
 class Solution {
   public:
-    int countFreq(vector<int>& arr, int target) {
+    int countFreq(vector<int>& nums, int target) {
         // code here
+         int N = nums.size();
         int st = 0;
-        int end = arr.size()-1;
-        int firstindex = -1;
-        int endindex = -1;
-        
+        int end = N-1;
+        int firstpos = -1;
+        int endpos = -1;
+
         while(st<=end){
-            
             int mid = st + (end-st)/2;
-            
-            if(arr[mid]==target){
-                firstindex = mid;
+
+            if(nums[mid]==target){
+                firstpos = mid;
                 end = mid-1;
-            }
-            else if(arr[mid]>target){
+            }else if(nums[mid]>target){
                 end = mid-1;
-            }
-            else if(arr[mid]<target){
+            }else{
                 st = mid+1;
             }
         }
-        
-        st = 0;
-        end = arr.size()-1;
-        
-        while(st<=end){
-            
-            int mid = st + (end-st)/2;
-            
-            if(arr[mid]==target){
-                endindex = mid;
-                st = mid+1;
-            }
-            else if(arr[mid]>target){
-                end = mid-1;
-            }
-            else if(arr[mid]<target){
-                st = mid+1;
-            }
-        }
-        
-        if(firstindex==-1){
+        if(firstpos==-1){
             return 0;
-        }
-        else{
-            return endindex-firstindex+1;
+        }else{
+            st = 0;
+            end = N-1;
+            while(st<=end){
+
+                int mid = st + (end-st)/2;
+                if(nums[mid]==target){
+                    endpos = mid;
+                    st = mid+1;
+                }else if(nums[mid]>target){
+                    end = mid-1;
+                }else{
+                    st = mid+1;
+                }
+            }
+
+            return endpos-firstpos+1;
         }
     }
 };
