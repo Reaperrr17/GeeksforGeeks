@@ -2,8 +2,9 @@ class Solution {
   public:
     int findFloor(vector<int>& nums, int x) {
         // code here
+        int N = nums.size();
         int st = 0;
-        int end = nums.size()-1;
+        int end = N-1;
         int ans = -1;
         
         while(st<=end){
@@ -16,6 +17,7 @@ class Solution {
                 end = mid-1;
             }
         }
+        
         return ans;
     }
 };
