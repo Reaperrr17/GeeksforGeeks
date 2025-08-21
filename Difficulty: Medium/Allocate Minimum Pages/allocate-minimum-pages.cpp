@@ -1,43 +1,45 @@
 class Solution {
   public:
-    bool ispossible(int maxpages,vector <int> &books,int k){
-        long long sum = 0;
-        int stu = 1;
-        for(int i=0;i<books.size();i++){
-            if(books[i]>maxpages){
+    bool ispossible(int maxpages,vector <int> &arr,int k){
+        long long sum=0;
+        int stu=1;
+        for(int i=0;i<arr.size();i++){
+            
+            if(arr[i]>maxpages){
                 return false;
             }
-            sum += books[i];
+            sum += arr[i];
             if(sum>maxpages){
                 stu++;
-                sum = 0;
-                sum = books[i];
-            }
-            if(stu>k){
-                return false;
+                if(stu>k){
+                    return false;
+                }
+                sum = arr[i];
             }
         }
         return true;
     }
-    int findPages(vector<int> &books, int k) {
+    int findPages(vector<int> &arr, int k) {
         // code here
-        if(k>books.size()){
+        if(k>arr.size()){
             return -1;
         }else{
-            int st = *(max_element(books.begin(),books.end()));
-            long long end = accumulate(books.begin(),books.end(),0);
             int ans;
-            
+            int N = arr.size();
+            int st = *(max_element(arr.begin(),arr.end()));
+            int end = accumulate(arr.begin(),arr.end(),0);
             while(st<=end){
-                long long mid = st + (end-st)/2;
                 
-                if(ispossible(mid,books,k)){
-                    ans = mid;
+                int mid = st + (end-st)/2;
+                
+                if(ispossible(mid,arr,k)){
                     end = mid-1;
+                    ans = mid;
                 }else{
                     st = mid+1;
                 }
             }
+            
             return ans;
         }
     }
