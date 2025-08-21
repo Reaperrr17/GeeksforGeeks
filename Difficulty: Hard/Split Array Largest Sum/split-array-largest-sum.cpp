@@ -1,19 +1,16 @@
 class Solution {
   public:
     bool ispossible(int maxsum,vector <int> &arr,int k){
-        int subarray = 1;
         long long sum = 0;
+        int seperate = 1;
         for(int i=0;i<arr.size();i++){
-            if(arr[i]>maxsum){
-                return false;
-            }
             sum += arr[i];
             if(sum>maxsum){
-                subarray++;
+                seperate++;
+                if(seperate>k){
+                    return false;
+                }
                 sum = arr[i];
-            }
-            if(subarray > k){
-                return false;
             }
         }
         return true;
@@ -25,7 +22,6 @@ class Solution {
         int ans;
         
         while(st<=end){
-            
             int mid = st + (end-st)/2;
             
             if(ispossible(mid,arr,k)){
@@ -36,6 +32,5 @@ class Solution {
             }
         }
         return ans;
-        
     }
 };
