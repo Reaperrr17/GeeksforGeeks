@@ -1,50 +1,37 @@
 class Solution {
   public:
-    
-    bool ispossible(int n,vector <int> &arr,int k){
-        long long summ=0;
-        int count=1;
+  
+    bool ispossible(int maxtime, vector<int> &arr, int k){
+        long long sum = 0;
+        int painter = 1;
         for(int i=0;i<arr.size();i++){
-            if(arr[i]>n){
-                return false;
+            sum+= arr[i];
+            if(sum>maxtime){
+                painter++;
+                if(painter>k){
+                    return false;
+                }
+                sum = arr[i];
             }
-            summ += arr[i];
-            if(summ>n){
-                count++;
-                summ=0;
-                summ+=arr[i];
-            }
         }
-        if(count>k){
-            return false;
-        }
-        else{
-            return true;
-        }
+        return true;
     }
     int minTime(vector<int>& arr, int k) {
         // code here
-       
-            long long summ = 0;
-            for(int i=0;i<arr.size();i++){
-                summ += arr[i];
-            }
-            int st=*(max_element(arr.begin(),arr.end()));
-            int end=summ;
-            int ans;
+        int st = *(max_element(arr.begin(),arr.end()));
+        int end = accumulate(arr.begin(),arr.end(),0);
+        int ans;
+        
+        while(st<=end){
+            int mid = st + (end-st)/2;
             
-            while(st<=end){
-                
-                int mid = st + (end-st)/2;
-                
-                if(ispossible(mid,arr,k)){
-                    ans = mid;
-                    end = mid-1;
-                }
-                else{
-                    st = mid+1;
-                }
+            if(ispossible(mid,arr,k)){
+                ans = mid;
+                end = mid-1;
+            }else{
+                st = mid+1;
             }
-            return ans;
+        }
+        return ans;
     }
 };
