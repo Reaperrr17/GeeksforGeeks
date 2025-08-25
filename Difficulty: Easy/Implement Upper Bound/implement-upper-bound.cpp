@@ -1,15 +1,17 @@
 class Solution {
   public:
-    int upperBound(vector<int>& arr, int target) {
+    int upperBound(vector<int>& nums, int target) {
         // code here
+        int N = nums.size();
         int st = 0;
-        int end = arr.size()-1;
-        int ans = arr.size();
+        int end = N-1;
+        int ans = N;
         
         while(st<=end){
+            
             int mid = st + (end-st)/2;
             
-            if(arr[mid]<=target){
+            if(nums[mid]<=target){
                 st = mid+1;
             }else{
                 ans = mid;
