@@ -7,7 +7,7 @@ class Solution {
             if(stalls[i]-lastpos >= mindist){
                 count++;
                 lastpos = stalls[i];
-                if(count>=k){
+                if(count==k){
                     return true;
                 }
             }
