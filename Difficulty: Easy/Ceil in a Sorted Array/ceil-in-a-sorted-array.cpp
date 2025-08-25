@@ -1,9 +1,10 @@
 // User function Template for C++
 class Solution {
   public:
-    int findCeil(vector<int>& nums, int x) {
+    int findCeil(vector<int>& nums, int target) {
         // code here
         int N = nums.size();
+        
         int st = 0;
         int end = N-1;
         int ans = -1;
@@ -11,15 +12,13 @@ class Solution {
         while(st<=end){
             int mid = st + (end-st)/2;
             
-            if(nums[mid]>=x){
+            if(nums[mid]>=target){
                 ans = mid;
                 end = mid-1;
             }else{
                 st = mid+1;
             }
         }
-        
         return ans;
-        
     }
 };
