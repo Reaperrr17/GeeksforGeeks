@@ -2,26 +2,23 @@
 
 class Solution {
   public:
-    bool isProduct(vector<int> arr, long long x) {
+    bool isProduct(vector<int> nums, long long x) {
         // code here
+        int N = nums.size();
         unordered_map <int,int> mpp;
-        int N = arr.size();
-        for(int i=0;i<N;i++){
-            mpp.emplace(arr[i],i);
-        }
-        
         if(x==0){
-            if(mpp.find(0)!=mpp.end()){
-                return true;
-            }else{
-                return false;
+            for(int i=0;i<N;i++){
+                if(nums[i]==0){
+                    return true;
+                }
             }
+            return false;
         }else{
             for(int i=0;i<N;i++){
-                if(arr[i]==0){
-                    continue;
-                }
-                if(mpp.find(x/arr[i])!=mpp.end() && mpp[x/arr[i]]!=i &&  ((long long)(mpp.find(x/arr[i]))->first)*arr[i]==x){
+                mpp.emplace(nums[i],i);
+            }
+            for(int i=0;i<N;i++){
+                if(mpp.find(x/nums[i])!=mpp.end() && mpp[x/nums[i]]!=i && ((long long)nums[i]*((mpp.find(x/nums[i]))->first))==x){
                     return true;
                 }
             }
