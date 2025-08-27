@@ -2,17 +2,15 @@ class Solution {
   public:
     int maxSubarraySum(vector<int> &nums) {
         // Code here
+        long long sum = 0;
         long long maxsum = INT_MIN;
-        long long currsum = 0;
-        int N = nums.size();
-
-        for(int i=0;i<N;i++){
-            currsum += nums[i];
-            if(currsum>maxsum){
-                maxsum = currsum;
+        for(int i=0;i<nums.size();i++){
+            sum += nums[i];
+            if(sum > maxsum){
+                maxsum = sum;
             }
-            if(currsum<0){
-                currsum = 0;
+            if(sum<0){
+                sum = 0;
             }
         }
         return maxsum;
