@@ -1,17 +1,14 @@
 class Solution {
   public:
-    bool ispossible(int maxpages,vector <int> &arr,int k){
-        long long sum=0;
-        int stu=1;
+    
+    bool ispossible(long long maxpages,vector <int> &arr, int k){
+        long long sum = 0;
+        int numofstudents = 1;
         for(int i=0;i<arr.size();i++){
-            
-            if(arr[i]>maxpages){
-                return false;
-            }
             sum += arr[i];
             if(sum>maxpages){
-                stu++;
-                if(stu>k){
+                numofstudents++;
+                if(numofstudents>k){
                     return false;
                 }
                 sum = arr[i];
@@ -24,17 +21,18 @@ class Solution {
         if(k>arr.size()){
             return -1;
         }else{
+            
             int ans;
-            int N = arr.size();
-            int st = *(max_element(arr.begin(),arr.end()));
-            int end = accumulate(arr.begin(),arr.end(),0);
+            long long st = *(max_element(arr.begin(),arr.end()));
+            long long end = accumulate(arr.begin(),arr.end(),0);
+            
             while(st<=end){
                 
-                int mid = st + (end-st)/2;
+                long long mid = st + (end-st)/2;
                 
                 if(ispossible(mid,arr,k)){
-                    end = mid-1;
                     ans = mid;
+                    end = mid-1;
                 }else{
                     st = mid+1;
                 }
