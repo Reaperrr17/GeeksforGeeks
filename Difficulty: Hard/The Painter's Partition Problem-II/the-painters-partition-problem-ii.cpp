@@ -1,14 +1,14 @@
 class Solution {
   public:
-  
-    bool ispossible(int maxtime, vector<int> &arr, int k){
+    bool ispossible(int maxtime,vector<int>& arr, int k){
         long long sum = 0;
-        int painter = 1;
+        int num = 1;
+        
         for(int i=0;i<arr.size();i++){
-            sum+= arr[i];
+            sum += arr[i];
             if(sum>maxtime){
-                painter++;
-                if(painter>k){
+                num++;
+                if(num>k){
                     return false;
                 }
                 sum = arr[i];
@@ -23,6 +23,7 @@ class Solution {
         int ans;
         
         while(st<=end){
+            
             int mid = st + (end-st)/2;
             
             if(ispossible(mid,arr,k)){
@@ -32,6 +33,7 @@ class Solution {
                 st = mid+1;
             }
         }
+        
         return ans;
     }
 };
